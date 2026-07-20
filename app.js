@@ -1,27 +1,29 @@
-const menuButton = document.querySelector('.menu-toggle');
-const nav = document.querySelector('.nav-links');
+const menuButton=document.querySelector('.menu-toggle');const nav=document.querySelector('.nav-links');const productGrid=document.getElementById('productGrid');const storeStatus=document.getElementById('storeStatus');const searchInput=document.getElementById('productSearch');const cartDrawer=document.getElementById('cartDrawer');const overlay=document.getElementById('drawerOverlay');const cartButton=document.getElementById('cartButton');const closeCart=document.getElementById('closeCart');const cartItems=document.getElementById('cartItems');const cartCount=document.getElementById('cartCount');const cartSubtotal=document.getElementById('cartSubtotal');const checkoutButton=document.getElementById('checkoutButton');const config=window.VIBEFLEX_CONFIG||{};let products=[];let activeFilter='all';let cart=[];let checkoutUrl='';
 
-menuButton?.addEventListener('click', () => {
-  const open = nav.classList.toggle('open');
-  menuButton.setAttribute('aria-expanded', String(open));
-});
+menuButton?.addEventListener('click',()=>{const open=nav.classList.toggle('open');menuButton.setAttribute('aria-expanded',String(open))});document.querySelectorAll('.nav-links a').forEach(link=>link.addEventListener('click',()=>{nav.classList.remove('open');menuButton?.setAttribute('aria-expanded','false')}));
 
-document.querySelectorAll('.nav-links a').forEach(link => {
-  link.addEventListener('click', () => {
-    nav.classList.remove('open');
-    menuButton?.setAttribute('aria-expanded', 'false');
-  });
-});
+const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}})},{threshold:.14});document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));document.getElementById('year').textContent=new Date().getFullYear();
 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      observer.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.14 });
+const fallbackProducts=[
+{id:'vf-dig-1',title:'30-Day Body Recomp Blueprint',handle:'30-day-body-recomp-blueprint',type:'digital',price:24.99,image:'',variantId:'',url:'https://vibeflexsports.com/search?q=30-Day+Body+Recomp+Blueprint'},
+{id:'vf-dig-2',title:'VibeFlex Discipline Bundle',handle:'vibeflex-discipline-bundle',type:'digital',price:19.99,image:'',variantId:'',url:'https://vibeflexsports.com/search?q=VibeFlex+Discipline+Bundle'},
+{id:'vf-dig-3',title:'Discipline System — Lite',handle:'vibeflex-discipline-system-lite',type:'digital',price:9.99,image:'',variantId:'',url:'https://vibeflexsports.com/search?q=Discipline+System+Lite'},
+{id:'vf-dig-4',title:'Home Gym Setup Guide',handle:'home-gym-setup-guide',type:'digital',price:19.99,image:'',variantId:'',url:'https://vibeflexsports.com/search?q=Home+Gym+Setup+Guide'},
+{id:'vf-dig-5',title:'30-Day Fitness Challenge Bundle',handle:'30-day-fitness-challenge-bundle',type:'digital',price:14.99,image:'',variantId:'',url:'https://vibeflexsports.com/search?q=30-Day+Fitness+Challenge'},
+{id:'vf-dig-6',title:'Gym Bag Essentials + Workout Log Cards',handle:'gym-bag-essentials-workout-log-cards',type:'digital',price:12.99,image:'',variantId:'',url:'https://vibeflexsports.com/search?q=Workout+Log+Cards'},
+{id:'vf-dig-7',title:'30-Day Consistency Challenge Calendar',handle:'vibeflex-30-day-consistency-calendar',type:'digital',price:9.99,image:'',variantId:'',url:'https://vibeflexsports.com/search?q=Consistency+Challenge+Calendar'}
+];
 
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+function money(value,currency='USD'){return new Intl.NumberFormat('en-US',{style:'currency',currency}).format(Number(value||0))}
+function productType(node){const tags=(node.tags||[]).join(' ').toLowerCase();const type=(node.productType||'').toLowerCase();return tags.includes('digital')||type.includes('digital')?'digital':'physical'}
+function normalizeShopifyProduct(node){const variant=node.variants?.edges?.[0]?.node;const amount=variant?.price?.amount||node.priceRange?.minVariantPrice?.amount||0;return{id:node.id,title:node.title,handle:node.handle,type:productType(node),price:Number(amount),currency:variant?.price?.currencyCode||'USD',image:node.featuredImage?.url||'',variantId:variant?.id||'',url:`https://${config.shopDomain||'vibeflexsports.com'}/products/${node.handle}`}}
+function renderProducts(){const term=(searchInput?.value||'').trim().toLowerCase();const filtered=products.filter(p=>(activeFilter==='all'||p.type===activeFilter)&&p.title.toLowerCase().includes(term));productGrid.innerHTML=filtered.map(p=>`<article class="product-card"><div class="product-media">${p.image?`<img src="${p.image}" alt="${p.title}" loading="lazy">`:`<div class="product-placeholder">VF</div>`}</div><div class="product-info"><span class="product-badge">${p.type==='digital'?'Digital download':'VibeFlex product'}</span><h3>${p.title}</h3><div class="product-price">${money(p.price,p.currency)}</div><div class="product-actions"><a href="${p.url}" target="_blank" rel="noopener">View</a><button class="add-button" data-id="${p.id}">${p.variantId?'Add to cart':'Shop now'}</button></div></div></article>`).join('');if(!filtered.length)productGrid.innerHTML='<p>No products match your search.</p>'}
+async function shopifyFetch(query,variables={}){const response=await fetch(`https://${config.shopDomain}/api/${config.apiVersion||'2025-10'}/graphql.json`,{method:'POST',headers:{'Content-Type':'application/json','X-Shopify-Storefront-Access-Token':config.storefrontToken},body:JSON.stringify({query,variables})});if(!response.ok)throw new Error(`Shopify request failed: ${response.status}`);const json=await response.json();if(json.errors)throw new Error(json.errors.map(e=>e.message).join(', '));return json.data}
+async function loadCatalog(){if(!config.shopDomain||!config.storefrontToken){products=fallbackProducts;storeStatus.textContent='Preview catalog shown. Add the Shopify Storefront token in config.js to load live products and enable checkout.';renderProducts();return}try{const data=await shopifyFetch(`query Products($first:Int!){products(first:$first,sortKey:UPDATED_AT,reverse:true){edges{node{id title handle productType tags featuredImage{url} priceRange{minVariantPrice{amount currencyCode}} variants(first:1){edges{node{id availableForSale price{amount currencyCode}}}}}}}}`,{first:48});products=data.products.edges.map(edge=>normalizeShopifyProduct(edge.node));storeStatus.textContent=`${products.length} live Shopify products loaded.`;renderProducts()}catch(error){console.error(error);products=fallbackProducts;storeStatus.textContent='Shopify could not be reached, so the preview catalog is showing. Check the domain, token, API version, and Storefront API permissions.';renderProducts()}}
+function openCart(){cartDrawer.classList.add('open');overlay.classList.add('open');cartDrawer.setAttribute('aria-hidden','false');document.body.classList.add('cart-open')}function hideCart(){cartDrawer.classList.remove('open');overlay.classList.remove('open');cartDrawer.setAttribute('aria-hidden','true');document.body.classList.remove('cart-open')}
+function renderCart(){cartCount.textContent=String(cart.reduce((sum,item)=>sum+item.quantity,0));cartSubtotal.textContent=money(cart.reduce((sum,item)=>sum+item.price*item.quantity,0));cartItems.innerHTML=cart.length?cart.map(item=>`<div class="cart-line"><div><h3>${item.title}</h3><small>Qty ${item.quantity} · ${money(item.price)}</small></div><button data-remove="${item.id}">Remove</button></div>`).join(''):'<p>Your cart is empty.</p>';checkoutButton.disabled=!checkoutUrl}
+async function addToCart(product){if(!product.variantId){window.open(product.url,'_blank','noopener');return}try{if(!checkoutUrl){const data=await shopifyFetch(`mutation CartCreate($lines:[CartLineInput!]){cartCreate(input:{lines:$lines}){cart{id checkoutUrl} userErrors{message}}}`,{lines:[{merchandiseId:product.variantId,quantity:1}]});const result=data.cartCreate;if(result.userErrors?.length)throw new Error(result.userErrors[0].message);checkoutUrl=result.cart.checkoutUrl}else{window.open(product.url,'_blank','noopener')}const existing=cart.find(item=>item.id===product.id);existing?existing.quantity++:cart.push({...product,quantity:1});renderCart();openCart()}catch(error){console.error(error);window.open(product.url,'_blank','noopener')}}
 
-document.getElementById('year').textContent = new Date().getFullYear();
+document.getElementById('filters')?.addEventListener('click',event=>{const button=event.target.closest('[data-filter]');if(!button)return;document.querySelectorAll('.filter').forEach(el=>el.classList.remove('active'));button.classList.add('active');activeFilter=button.dataset.filter;renderProducts()});searchInput?.addEventListener('input',renderProducts);productGrid?.addEventListener('click',event=>{const button=event.target.closest('.add-button');if(!button)return;const product=products.find(p=>p.id===button.dataset.id);if(product)addToCart(product)});cartItems?.addEventListener('click',event=>{const button=event.target.closest('[data-remove]');if(!button)return;cart=cart.filter(item=>item.id!==button.dataset.remove);renderCart()});cartButton?.addEventListener('click',openCart);closeCart?.addEventListener('click',hideCart);overlay?.addEventListener('click',hideCart);checkoutButton?.addEventListener('click',()=>{if(checkoutUrl)window.location.href=checkoutUrl});
+
+renderCart();loadCatalog();
