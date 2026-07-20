@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="VibeFlex Sports — performance apparel built for athletes who stay ready.">
+  <meta name="description" content="VibeFlex Sports — performance apparel, digital tools, and mindset-driven products for athletes and creators.">
   <title>VibeFlex Sports | Wear the Mindset</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,17 +11,16 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <div class="announcement">FREE SHIPPING ON QUALIFYING ORDERS · DIGITAL PRODUCTS DELIVERED INSTANTLY</div>
   <header class="site-header">
     <a class="brand" href="#top" aria-label="VibeFlex Sports home">
-      <span class="brand-mark">VF</span>
-      <span>VIBEFLEX SPORTS</span>
+      <span class="brand-mark">VF</span><span>VIBEFLEX SPORTS</span>
     </a>
     <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">MENU</button>
     <nav class="nav-links" aria-label="Main navigation">
-      <a href="#collections">Collections</a>
-      <a href="#mindset">Our Mindset</a>
-      <a href="#shop">Shop</a>
+      <a href="#featured">Shop</a><a href="#collections">Collections</a><a href="#digital">Digital</a><a href="#custom">Custom</a><a href="#mindset">About</a>
     </nav>
+    <button class="cart-button" id="cartButton" aria-label="Open cart">CART <span id="cartCount">0</span></button>
   </header>
 
   <main id="top">
@@ -30,90 +29,73 @@
       <div class="hero-content reveal">
         <p class="eyebrow">BUILT FOR THE ONES WHO NEVER CLOCK OUT</p>
         <h1>WEAR THE<br><span>MINDSET.</span></h1>
-        <p class="hero-copy">Performance apparel for athletes, creators, and competitors who stay ready before the moment arrives.</p>
+        <p class="hero-copy">Performance apparel, digital tools, and limited drops for athletes, creators, and competitors who stay ready before the moment arrives.</p>
         <div class="hero-actions">
-          <a class="button button-primary" href="#shop">Shop VibeFlex</a>
-          <a class="button button-secondary" href="#collections">Explore Collections</a>
+          <a class="button button-primary" href="#featured">Shop what’s ready</a>
+          <a class="button button-secondary" href="#collections">Explore collections</a>
         </div>
       </div>
-      <div class="hero-stamp" aria-hidden="true">
-        <span>STAY READY</span>
-        <strong>490</strong>
-        <span>MOVEMENT</span>
-      </div>
+      <div class="hero-stamp" aria-hidden="true"><span>STAY READY</span><strong>490</strong><span>MOVEMENT</span></div>
     </section>
 
-    <section class="ticker" aria-label="Brand values">
-      <div class="ticker-track">
-        <span>RELENTLESS</span><i>•</i><span>#UNCOOKED</span><i>•</i><span>BUILT DIFFERENT</span><i>•</i><span>LOCKED IN</span><i>•</i><span>STAY READY</span><i>•</i>
-        <span>RELENTLESS</span><i>•</i><span>#UNCOOKED</span><i>•</i><span>BUILT DIFFERENT</span><i>•</i><span>LOCKED IN</span><i>•</i><span>STAY READY</span><i>•</i>
+    <section class="ticker" aria-label="Brand values"><div class="ticker-track">
+      <span>RELENTLESS</span><i>•</i><span>#UNCOOKED</span><i>•</i><span>BUILT DIFFERENT</span><i>•</i><span>LOCKED IN</span><i>•</i><span>STAY READY</span><i>•</i>
+      <span>RELENTLESS</span><i>•</i><span>#UNCOOKED</span><i>•</i><span>BUILT DIFFERENT</span><i>•</i><span>LOCKED IN</span><i>•</i><span>STAY READY</span><i>•</i>
+    </div></section>
+
+    <section class="section commerce-section" id="featured">
+      <div class="section-heading reveal">
+        <p class="eyebrow">AVAILABLE NOW</p>
+        <h2>SHOP THE<br>MENTALITY.</h2>
+        <p class="section-copy">Live Shopify products will populate here automatically once the Storefront API credentials are connected.</p>
       </div>
+      <div class="product-toolbar reveal">
+        <div class="filters" id="filters">
+          <button class="filter active" data-filter="all">All</button>
+          <button class="filter" data-filter="physical">Apparel & POD</button>
+          <button class="filter" data-filter="digital">Digital</button>
+        </div>
+        <input id="productSearch" type="search" placeholder="Search products" aria-label="Search products">
+      </div>
+      <div class="product-grid" id="productGrid" aria-live="polite"></div>
+      <div class="store-status" id="storeStatus">Loading the VibeFlex catalog…</div>
     </section>
 
     <section class="section" id="collections">
-      <div class="section-heading reveal">
-        <p class="eyebrow">SIGNATURE DROPS</p>
-        <h2>CHOOSE YOUR<br>MENTALITY.</h2>
-      </div>
+      <div class="section-heading reveal"><p class="eyebrow">SIGNATURE DROPS</p><h2>CHOOSE YOUR<br>MENTALITY.</h2></div>
       <div class="collection-grid">
-        <article class="collection-card uncooked reveal">
-          <div class="card-number">01</div>
-          <div class="card-content">
-            <p>THE HUNGER NEVER LEFT</p>
-            <h3>#UNCOOKED</h3>
-            <a href="#shop">View collection <span>→</span></a>
-          </div>
-        </article>
-        <article class="collection-card relentless reveal">
-          <div class="card-number">02</div>
-          <div class="card-content">
-            <p>NO EXCUSES. NO OFF SWITCH.</p>
-            <h3>RELENTLESS</h3>
-            <a href="#shop">View collection <span>→</span></a>
-          </div>
-        </article>
-        <article class="collection-card movement reveal">
-          <div class="card-number">03</div>
-          <div class="card-content">
-            <p>MORE THAN A NUMBER</p>
-            <h3>490 MOVEMENT</h3>
-            <a href="#shop">View collection <span>→</span></a>
-          </div>
-        </article>
+        <article class="collection-card uncooked reveal"><div class="card-number">01</div><div class="card-content"><p>THE HUNGER NEVER LEFT</p><h3>#UNCOOKED</h3><a href="https://vibeflexsports.com/collections/uncooked">View collection <span>→</span></a></div></article>
+        <article class="collection-card relentless reveal"><div class="card-number">02</div><div class="card-content"><p>NO EXCUSES. NO OFF SWITCH.</p><h3>RELENTLESS</h3><a href="https://vibeflexsports.com/collections/relentless">View collection <span>→</span></a></div></article>
+        <article class="collection-card movement reveal"><div class="card-number">03</div><div class="card-content"><p>MORE THAN A NUMBER</p><h3>490 MOVEMENT</h3><a href="https://vibeflexsports.com/collections/490-movement">View collection <span>→</span></a></div></article>
+        <article class="collection-card digital-card reveal"><div class="card-number">04</div><div class="card-content"><p>TOOLS FOR THE WORK</p><h3>DIGITAL PRODUCTS</h3><a href="#digital">Shop digital <span>→</span></a></div></article>
+      </div>
+    </section>
+
+    <section class="digital-section" id="digital">
+      <div class="digital-copy reveal"><p class="eyebrow">INSTANT ACCESS</p><h2>BUILD THE<br>SYSTEM.</h2><p>Training plans, accountability tools, challenges, calendars, and practical resources designed to move with you.</p><a class="button button-primary" href="#featured">Shop digital products</a></div>
+      <div class="digital-list reveal">
+        <span>30-Day Body Recomp Blueprint</span><span>Discipline Bundle</span><span>Home Gym Setup Guide</span><span>30-Day Fitness Challenge</span><span>Workout Log Cards</span><span>Consistency Calendar</span>
       </div>
     </section>
 
     <section class="manifesto" id="mindset">
-      <div class="manifesto-copy reveal">
-        <p class="eyebrow">THIS IS VIBEFLEX</p>
-        <h2>NOT JUST WHAT<br>YOU WEAR.<br><span>HOW YOU MOVE.</span></h2>
-      </div>
-      <div class="manifesto-text reveal">
-        <p>VibeFlex Sports was built for people who compete with themselves first. Every piece carries a message: prepare early, work longer, and never wait for permission to become who you were built to be.</p>
-        <div class="stats">
-          <div><strong>24/7</strong><span>MENTALITY</span></div>
-          <div><strong>100%</strong><span>COMMITMENT</span></div>
-          <div><strong>0</strong><span>EXCUSES</span></div>
-        </div>
-      </div>
+      <div class="manifesto-copy reveal"><p class="eyebrow">THIS IS VIBEFLEX</p><h2>NOT JUST WHAT<br>YOU WEAR.<br><span>HOW YOU MOVE.</span></h2></div>
+      <div class="manifesto-text reveal"><p>VibeFlex Sports was built for people who compete with themselves first. Every piece carries a message: prepare early, work longer, and never wait for permission to become who you were built to be.</p><div class="stats"><div><strong>24/7</strong><span>MENTALITY</span></div><div><strong>100%</strong><span>COMMITMENT</span></div><div><strong>0</strong><span>EXCUSES</span></div></div></div>
     </section>
 
-    <section class="shop-section" id="shop">
-      <div class="shop-panel reveal">
-        <p class="eyebrow">THE NEXT DROP STARTS HERE</p>
-        <h2>READY WHEN<br>YOU ARE.</h2>
-        <p>Shop the latest VibeFlex pieces and bring the mentality with you.</p>
-        <a class="button button-primary" href="https://vibeflexsports.com" target="_blank" rel="noopener">Enter the Shop</a>
-      </div>
-    </section>
+    <section class="shop-section" id="custom"><div class="shop-panel reveal"><p class="eyebrow">TEAMS · SCHOOLS · BUSINESSES · CHURCHES</p><h2>CUSTOM GEAR.<br>YOUR MESSAGE.</h2><p>Need shirts, hats, team gear, event merchandise, or bulk printing? Start a custom order with VibeFlex.</p><a class="button button-primary" href="mailto:info@vibeflexsports.com?subject=VibeFlex%20Custom%20Order%20Request">Request a quote</a></div></section>
   </main>
 
-  <footer>
-    <div class="footer-brand">VIBEFLEX SPORTS</div>
-    <p>Wear the mindset.</p>
-    <p class="copyright">© <span id="year"></span> VibeFlex Sports. All rights reserved.</p>
-  </footer>
+  <aside class="cart-drawer" id="cartDrawer" aria-hidden="true">
+    <div class="cart-head"><h2>Your cart</h2><button id="closeCart" aria-label="Close cart">×</button></div>
+    <div id="cartItems" class="cart-items"><p>Your cart is empty.</p></div>
+    <div class="cart-footer"><div><span>Subtotal</span><strong id="cartSubtotal">$0.00</strong></div><button class="button button-primary checkout-button" id="checkoutButton" disabled>Checkout with Shopify</button></div>
+  </aside>
+  <div class="drawer-overlay" id="drawerOverlay"></div>
 
+  <footer><div class="footer-brand">VIBEFLEX SPORTS</div><p>Wear the mindset.</p><p class="copyright">© <span id="year"></span> VibeFlex Sports. All rights reserved.</p></footer>
+
+  <script src="config.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
