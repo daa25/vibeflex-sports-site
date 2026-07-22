@@ -1,0 +1,12 @@
+<div class="announcement">{{ section.settings.announcement }}</div>
+<header class="site-header page-width">
+  <a class="brand" href="{{ routes.root_url }}">
+    {% if section.settings.logo != blank %}{{ section.settings.logo | image_url: width: 320 | image_tag: class: 'brand-logo', loading: 'eager' }}{% else %}<span class="brand-mark">VF</span><span>{{ shop.name }}</span>{% endif %}
+  </a>
+  <button class="menu-toggle" type="button" aria-expanded="false">Menu</button>
+  <nav class="nav-links" aria-label="Primary navigation">
+    {% for link in section.settings.menu.links %}<a href="{{ link.url }}">{{ link.title }}</a>{% endfor %}
+  </nav>
+  <a class="cart-button" href="{{ routes.cart_url }}">Cart <span>{{ cart.item_count }}</span></a>
+</header>
+{% schema %}{"name":"Header","settings":[{"type":"text","id":"announcement","label":"Announcement","default":"FREE SHIPPING ON QUALIFYING ORDERS · DIGITAL PRODUCTS DELIVERED INSTANTLY"},{"type":"image_picker","id":"logo","label":"Logo"},{"type":"link_list","id":"menu","label":"Menu","default":"main-menu"}]}{% endschema %}
