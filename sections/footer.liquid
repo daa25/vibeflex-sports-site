@@ -1,0 +1,6 @@
+<footer class="site-footer page-width">
+  <div><strong>{{ shop.name }}</strong><p>{{ section.settings.tagline }}</p></div>
+  <nav>{% for link in section.settings.menu.links %}<a href="{{ link.url }}">{{ link.title }}</a>{% endfor %}</nav>
+  <p>© {{ 'now' | date: '%Y' }} {{ shop.name }}</p>
+</footer>
+{% schema %}{"name":"Footer","settings":[{"type":"text","id":"tagline","label":"Tagline","default":"Wear the mindset."},{"type":"link_list","id":"menu","label":"Footer menu","default":"footer"}]}{% endschema %}
