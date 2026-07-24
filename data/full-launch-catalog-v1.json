@@ -1,0 +1,62 @@
+{
+  "catalog_name": "VibeFlex Sports / 490 Movement Full Launch Catalog",
+  "status": "shopify_import_ready",
+  "totals": {
+    "physical_products": 14,
+    "digital_products": 12,
+    "total_products": 26,
+    "shopify_variant_rows": 252
+  },
+  "collections": [
+    "#UNCOOKED",
+    "Built Different",
+    "CHSN",
+    "Discipline Systems",
+    "Faith & Devotionals",
+    "Faith Driven",
+    "Fitness Programs",
+    "Locked In",
+    "Mental Performance",
+    "Mindset Sleeves",
+    "Parent Resources",
+    "Stay Ready",
+    "Tampa Bay",
+    "Trackers & Planners",
+    "VibeFlex Performance"
+  ],
+  "physical_handles": [
+    "good-only-vibes-performance-tee",
+    "built-different-performance-hoodie",
+    "built-different-performance-tee",
+    "locked-in-performance-tee",
+    "mindset-sleeves-lock-down",
+    "mindset-sleeves-beast-mode",
+    "chsn-premium-snapback",
+    "490-uncooked-classic-tee",
+    "490-uncooked-back-print-tee",
+    "490-rebuilt-different-mountain-tee",
+    "490-uncooked-premium-hoodie",
+    "490-stay-ready-sweatsuit",
+    "tampa-bay-coordinates-tee",
+    "formed-purpose-driven-tee"
+  ],
+  "digital_handles": [
+    "30-day-body-recomp-blueprint",
+    "30-day-fitness-challenge-bundle",
+    "vibeflex-discipline-bundle",
+    "vibeflex-discipline-system-lite",
+    "gym-confidence-mindset-resets",
+    "preworkout-focus-postworkout-reflection",
+    "weekly-training-habit-tracker",
+    "built-different-competitors-devotional",
+    "youth-sports-parent-survival-guide",
+    "home-gym-setup-guide",
+    "gym-bag-checklist-workout-log-cards",
+    "elite-sports-parent-blueprint"
+  ],
+  "notes": [
+    "The Shopify CSV intentionally excludes all image columns to prevent missing image source errors.",
+    "Digital files must be attached in Shopify Digital Downloads or another digital delivery app after import.",
+    "Gelato product connections require final print-file placement and variant validation inside Gelato."
+  ]
+}
