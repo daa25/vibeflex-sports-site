@@ -1,0 +1,91 @@
+{
+  "drop": "VibeFlex / 490 Movement Launch Drop 01",
+  "status": "ready_for_asset_preflight",
+  "products": [
+    {
+      "handle": "vibeflex-good-only-vibes-tee",
+      "collection": "VibeFlex Performance",
+      "priority": 1,
+      "source_images": [
+        "assets/catalog/good-only-vibes-royal-blue.jpeg",
+        "assets/catalog/good-only-vibes-gray.jpeg",
+        "assets/catalog/good-only-vibes-white.jpeg",
+        "assets/catalog/good-only-vibes-black.jpeg"
+      ],
+      "gelato_products": ["premium-unisex-tee", "performance-tee", "youth-tee"],
+      "colorways": ["Royal Blue", "Athletic Gray", "White", "Black"],
+      "target_price": 29.99,
+      "scoring": {
+        "premium_appeal": 82,
+        "wearability": 88,
+        "social_potential": 81,
+        "brand_alignment": 91,
+        "launch_priority": "high"
+      }
+    },
+    {
+      "handle": "vibeflex-built-different-hoodie",
+      "collection": "Built Different",
+      "priority": 2,
+      "source_images": ["assets/catalog/built-different-hoodie-board.jpeg"],
+      "gelato_products": ["premium-pullover-hoodie", "crewneck-sweatshirt"],
+      "colorways": ["Black", "White", "Sport Gray"],
+      "target_price": 54.99,
+      "scoring": {
+        "premium_appeal": 87,
+        "wearability": 90,
+        "social_potential": 84,
+        "brand_alignment": 94,
+        "launch_priority": "high"
+      }
+    },
+    {
+      "handle": "vibeflex-uncooked-redeemed-tee",
+      "collection": "#UNCOOKED",
+      "priority": 3,
+      "source_images": ["assets/catalog/rebuilt-different-cream-front-back.jpeg"],
+      "gelato_products": ["premium-heavyweight-tee", "oversized-tee", "premium-hoodie"],
+      "colorways": ["Cream", "Black"],
+      "target_price": 36.00,
+      "scoring": {
+        "premium_appeal": 93,
+        "wearability": 86,
+        "social_potential": 94,
+        "brand_alignment": 98,
+        "launch_priority": "hero"
+      }
+    },
+    {
+      "handle": "vibeflex-uncooked-white-back-print",
+      "collection": "#UNCOOKED",
+      "priority": 4,
+      "source_images": ["assets/catalog/uncooked-white-front-back.jpeg"],
+      "gelato_products": ["premium-unisex-tee", "long-sleeve-tee"],
+      "colorways": ["White", "Black"],
+      "target_price": 34.00,
+      "scoring": {
+        "premium_appeal": 89,
+        "wearability": 88,
+        "social_potential": 90,
+        "brand_alignment": 97,
+        "launch_priority": "high"
+      }
+    },
+    {
+      "handle": "vibeflex-uncooked-classic-tee",
+      "collection": "#UNCOOKED",
+      "priority": 5,
+      "source_images": ["assets/catalog/uncooked-classic-cream.jpeg"],
+      "gelato_products": ["classic-unisex-tee", "premium-unisex-tee"],
+      "colorways": ["Cream", "Black", "White"],
+      "target_price": 29.99,
+      "scoring": {
+        "premium_appeal": 80,
+        "wearability": 94,
+        "social_potential": 82,
+        "brand_alignment": 95,
+        "launch_priority": "core"
+      }
+    }
+  ]
+}
